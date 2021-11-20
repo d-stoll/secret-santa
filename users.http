@@ -1,0 +1,9 @@
+POST http://localhost:8080/players
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "age": 23
+}
+###
+GET http://localhost:8080/points
