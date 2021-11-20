@@ -6,4 +6,4 @@ Content-Type: application/json
   "age": 23
 }
 ###
-GET http://localhost:8080/points
+GET http://localhost:8080/randomLocation

@@ -15,7 +15,7 @@ public class Game {
     private List<Player> participants;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Point point;
+    private Location location;
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime time;
@@ -24,9 +24,9 @@ public class Game {
 
     protected Game() {}
 
-    public Game(List<Player> participants, Point point, LocalDateTime time, Integer budget) {
+    public Game(List<Player> participants, Location location, LocalDateTime time, Integer budget) {
         this.participants = participants;
-        this.point = point;
+        this.location = location;
         this.time = time;
         this.budget = budget;
     }
@@ -35,8 +35,8 @@ public class Game {
         return participants;
     }
 
-    public Point getPoi() {
-        return point;
+    public Location getPoi() {
+        return location;
     }
 
     public LocalDateTime getTime() {
