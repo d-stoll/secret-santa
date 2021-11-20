@@ -17,6 +17,9 @@ import java.util.Random;
 @Service
 public class LocationService {
 
+    @Value("${server.port}")
+    private String port;
+
     private final GeoApiContext context;
     private static final LatLng MUNICH_LAT_LNG = new LatLng(48.137154, 11.576124);
 
@@ -35,11 +38,12 @@ public class LocationService {
                     .results;
             Random r = new Random();
             var placeResult = searchResults[r.nextInt(searchResults.length)];
+            while(placeResult.photos.length < 1) {
+                placeResult = searchResults[r.nextInt(searchResults.length)];
+            }
 
             String serverAddress = InetAddress.getLoopbackAddress().getHostAddress();
-            String serverPort = InetAddress.getLoopbackAddress().getHostName();
-
-            var photoUrl =  serverAddress + serverPort + "/photo/" + placeResult.photos[0].photoReference;
+            var photoUrl =  serverAddress + ":" + port + "/photo/" + placeResult.photos[0].photoReference;
 
             return new Location(placeResult.name, placeResult.formattedAddress, photoUrl);
         } catch(IOException | InterruptedException | ApiException ex) {

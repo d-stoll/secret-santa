@@ -14,7 +14,7 @@ import java.util.List;
 @EnableWebMvc
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
-    @Override
+   /* @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(byteArrayHttpMessageConverter());
     }
@@ -24,5 +24,5 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         var converter = new ByteArrayHttpMessageConverter();
         converter.setSupportedMediaTypes(List.of(MediaType.IMAGE_JPEG, MediaType.IMAGE_PNG));
         return converter;
-    }
+    }*/
 }

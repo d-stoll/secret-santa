@@ -18,9 +18,4 @@ public class LocationController {
     Location randomLocation() {
         return locationService.findLocationInMunich();
     }
-
-    @GetMapping("/photo/{photoReference}")
-    byte[] locationImage(@PathVariable String photoReference) {
-        return locationService.getPhotoData(photoReference);
-    }
 }
