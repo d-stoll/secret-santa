@@ -17,6 +17,9 @@ import java.util.Random;
 @Service
 public class LocationService {
 
+    @Value("${server.address}")
+    private String address;
+
     @Value("${server.port}")
     private String port;
 
@@ -38,12 +41,11 @@ public class LocationService {
                     .results;
             Random r = new Random();
             var placeResult = searchResults[r.nextInt(searchResults.length)];
-            while(placeResult.photos.length < 1) {
+            while(placeResult.photos == null) {
                 placeResult = searchResults[r.nextInt(searchResults.length)];
             }
 
-            String serverAddress = InetAddress.getLoopbackAddress().getHostAddress();
-            var photoUrl =  serverAddress + ":" + port + "/photo/" + placeResult.photos[0].photoReference;
+            var photoUrl =  address + ":" + port + "/photo/" + placeResult.photos[0].photoReference + ".jpg";
 
             return new Location(placeResult.name, placeResult.formattedAddress, photoUrl);
         } catch(IOException | InterruptedException | ApiException ex) {
@@ -52,7 +54,7 @@ public class LocationService {
         }
     }
 
-    public byte[] getPhotoData(java.lang.String photoReference) {
+    public byte[] getImageData(java.lang.String photoReference) {
         try {
             return PlacesApi.photo(context, photoReference)
                     .maxHeight(700)

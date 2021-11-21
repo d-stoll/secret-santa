@@ -3,7 +3,6 @@ package de.tum.hack.secretsanta.controller;
 import de.tum.hack.secretsanta.model.Location;
 import de.tum.hack.secretsanta.service.LocationService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
